@@ -1,12 +1,14 @@
+
 USE [teamcity]
 GO
 
-/****** Object:  Table [dbo].[1TEST]    Script Date: 4/3/2022 7:40:27 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[1TEST]') AND type in (N'U'))
 DROP TABLE [dbo].[1TEST]
 GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[2TEST]') AND type in (N'U'))
+DROP TABLE [dbo].[2TEST]
+GO
 
-/****** Object:  Table [dbo].[1TEST]    Script Date: 4/3/2022 7:40:27 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -17,7 +19,11 @@ CREATE TABLE [dbo].[1TEST](
 	[TEST] [nvarchar](max) NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-CREATE TABLE [dbo].[2TEST](
-	[TEST] [nvarchar](max) NULL
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+
+SELECT TOP (1000) [agent_type_id]
+      ,[param_kind]
+      ,[param_name]
+      ,[param_value]
+  FROM [teamcity].[dbo].[agent_type_param]
 GO
